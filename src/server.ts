@@ -1,17 +1,15 @@
-
-import express from 'express';
-import http from 'http';
-
-
-const app = express();
-
-app.get('/users', (req, res) => {
-    res.send("List of Users");
-});
+import app from './app'
+import { ServerBootstrap} from './bootstrap/server.bootstrap';
 
 
-const server = http.createServer(app);
 
-server.listen(4600, () => {
-    console.log('Server is running on port 4600');
-});
+(async () => {
+    const serverBootstrap = new ServerBootstrap(app)
+
+    try {
+        await serverBootstrap.initialize();
+    } catch (err) {
+        console.log(err)
+    }
+
+})()
