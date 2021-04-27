@@ -1,0 +1,30 @@
+{
+  "name": "arquitectura",
+  "version": "1.0.0",
+  "description": "base de arquitectura ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compiler": "tsc src/server",
+    "dev": "ts-node src/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blindlp/arquitectura.git"
+  },
+  "author": "blindlp <luispoz@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/blindlp/arquitectura/issues"
+  },
+  "homepage": "https://github.com/blindlp/arquitectura#readme",
+  "devDependencies": {
+    "@types/express": "^4.17.11",
+    "@types/node": "^15.0.0",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.4"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
