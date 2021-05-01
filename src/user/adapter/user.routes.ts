@@ -7,8 +7,6 @@ const controller = new UserController()
 const route = express.Router()
 
 
-
-
 route.get('/', controller.list);
 route.get('/:id', controller.listOne);
 route.get('/page/:page', controller.listByPage);

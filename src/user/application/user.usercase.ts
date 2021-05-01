@@ -26,17 +26,17 @@ export class UserUseCase {
     }
 
     
-    insert(user: UserModel): Result<UserModel> {
+    insert(user: Partial<UserModel>): Result<UserModel> {
         const result: Result<UserModel> = this.userRepository.insert(user);
         return result;
     }
 
-    update(user: UserModel): Result<UserModel> {
+    update(user: Partial<UserModel>): Result<UserModel> {
         const result: Result<UserModel> = this.userRepository.update(user);
         return result;
     }
 
-    remove(user: UserModel): Result<UserModel> {
+    remove(user: Partial<UserModel>): Result<UserModel> {
         const result: Result<UserModel> = this.userRepository.remove(user);
         return result;
     }
