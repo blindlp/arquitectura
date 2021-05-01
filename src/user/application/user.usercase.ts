@@ -9,13 +9,13 @@ export class UserUseCase {
         this.userRepository = userRepository;
     }
       
-    list(): Result<UserModel[]> {
+    list(): Result<Partial<UserModel>[]> {
         const result: Result<UserModel[]> = this.userRepository.list();
         return result;
     }
 
     
-    listOne(user: UserModel): Result<UserModel> {
+    listOne(user: Partial<UserModel>): Result<UserModel> {
         const result: Result<UserModel> = this.userRepository.listOne(user);
         return result;
     }

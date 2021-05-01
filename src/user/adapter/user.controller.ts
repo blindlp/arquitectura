@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { UserUseCase } from '../application/user.usercase';
+import { UserModel } from '../domain/user.model';
 import { UserOperation } from '../infraestruture/user.operation';
 
 const operation = new UserOperation();
@@ -15,7 +16,8 @@ export class UserController {
     }
 
     listOne(req: Request, res: Response) {
-        const user = req.body
+        const id = +req.params.id;
+        const user: Partial<UserModel> = {id}
         const result = useCase.listOne(user);
         return res.json(result);                
     }
