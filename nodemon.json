@@ -1,13 +1,13 @@
 {
     "restartable": "rs",
-    "verbose": true,
+    "verbose": true,        
     "execMap": {
-        "ts": "ts-node"
+      "ts": "node -r ts-node/register"
     },
     "watch": ["src/"],
-    "ext": "ts json",
+    "ext": "json,ts",    
     "env": {
-        "NODE_ENV": "development"
+      "NODE_ENV": "development"
     },
-    "ignore": ["node_modules", "dist,", "cache", "reports", "test", "git"]
-}
+    "ignore": [".git", "node_modules/", "dist/", "reports/", "cache/"]
+  }
