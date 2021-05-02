@@ -16,7 +16,7 @@ const schema = Joi.object({
 
 
 route.get('/', controller.list);
-route.get('/:id', validateInputs(schema), controller.listOne);
+route.get('/:id', validateInputs(schema, 'params'), controller.listOne);
 route.get('/page/:page', controller.listByPage);
 route.post('/', controller.insert);
 route.put('/:id', controller.update);
