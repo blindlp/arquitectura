@@ -28,6 +28,10 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "joi": "^17.4.0"
+    "joi": "^17.4.0",
+    "mysql2": "^2.2.5",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.32",
+    "yenv": "^3.0.0"
   }
 }

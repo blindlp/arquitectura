@@ -109,3 +109,11 @@ test
 
 #.nodemon
 .nodemon
+
+.vscode/
+.prettier.json
+
+typeorm_test
+node_modules
+src
+env.yaml
