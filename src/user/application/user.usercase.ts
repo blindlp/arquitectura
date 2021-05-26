@@ -1,48 +1,19 @@
-import { Result } from "../../shared/application/result.interface";
-import { UserModel } from "../domain/user.model";
-import { UserRepository } from "./user.repository";
+import { Entity } from 'typeorm';
+import { UseCaseRepository } from '../../shared/application/usecase.repository';
+import { OperationRepository } from '../../shared/infraestructure/operation.repository';
+import { UserModel } from '../domain/user.model';
+import { UserRepository } from './user.repository';
+import { UserService } from './user.service';
 
-export class UserUseCase {
-    userRepository: UserRepository;
-  
-    constructor(userRepository: UserRepository) {
-        this.userRepository = userRepository;
-    }
-      
-    list(): Result<Partial<UserModel>[]> {
-        const result: Result<UserModel[]> = this.userRepository.list();
-        return result;
+export class UserUseCase extends UseCaseRepository<UserModel, UserRepository> {
+    //OperationRepository<UserModel>
+    constructor(public operation: UserRepository) {
+        super(operation);
     }
 
-    
-    listOne(user: Partial<UserModel>): Result<UserModel> {
-        const result: Result<UserModel> = this.userRepository.listOne(user);
-        return result;
+    async insertCipher(entity: UserModel) {
+        entity.password = await UserService.cryptPassword(entity.password);
+        entity.refreshTocken = UserService.generateRefreshToken();
+        return this.operation.insertCipher(entity);
     }
-
-    listByPage(page: number): Result<UserModel[]> {
-        const result: Result<UserModel[]> = this.userRepository.listByPage(page);
-        return result;
-    }
-
-    
-    insert(user: Partial<UserModel>): Result<UserModel> {
-        const result: Result<UserModel> = this.userRepository.insert(user);
-        return result;
-    }
-
-    update(user: Partial<UserModel>): Result<UserModel> {
-        const result: Result<UserModel> = this.userRepository.update(user);
-        return result;
-    }
-
-    remove(user: Partial<UserModel>): Result<UserModel> {
-        const result: Result<UserModel> = this.userRepository.remove(user);
-        return result;
-    }
-
-
-
-    
-  
-  }
+}

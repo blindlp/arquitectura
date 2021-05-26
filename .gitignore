@@ -116,4 +116,4 @@ test
 typeorm_test
 node_modules
 src
-env.yaml
+*env.yaml

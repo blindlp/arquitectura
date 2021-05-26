@@ -1,18 +1,18 @@
-import app from './app'
-import { ServerBootstrap} from './bootstrap/server.bootstrap';
-import { DatabaseBootStrap,IDataBaseBootStrap} from './bootstrap/database.bootstrap'
-
-
+import app from './app';
+import { ServerBootstrap } from './bootstrap/server.bootstrap';
+import {
+    DatabaseBootstrap,
+    IDatabaseBootstrap,
+} from './bootstrap/database.bootstrap';
 
 (async () => {
-    const serverBootstrap = new ServerBootstrap(app)
-    const databaseBootstrap: IDataBaseBootStrap = new DatabaseBootStrap()
+    const serverBootstrap = new ServerBootstrap(app);
+    const databaseBootstrap: IDatabaseBootstrap = new DatabaseBootstrap();
 
     try {
-        await serverBootstrap.initialize();
         await databaseBootstrap.initialize();
+        await serverBootstrap.initialize();
     } catch (err) {
-        console.log(err)
+        console.log(err);
     }
-
-})()
+})();

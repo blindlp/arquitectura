@@ -1,16 +1,16 @@
-import yenv from 'yenv'
-import { createConnection} from 'typeorm'
+import yenv from 'yenv';
+import { createConnection } from 'typeorm';
 
-export interface IDataBaseBootStrap {
-    initialize(): Promise<any>
-    getConnection(): any
+export interface IDatabaseBootstrap {
+    initialize(): Promise<any>;
+    getConnection(): any;
 }
 
-const env = yenv()
+const env = yenv();
 
-let client: any
+let client: any;
 
-export class DatabaseBootStrap implements IDataBaseBootStrap {
+export class DatabaseBootstrap implements IDatabaseBootstrap {
     async initialize(): Promise<any> {
         const promise = new Promise((resolve, reject) => {
             const parametersConnection = {
@@ -21,24 +21,25 @@ export class DatabaseBootStrap implements IDataBaseBootStrap {
                 database: env.DATABASE.MYSQL.DATABASE,
                 port: env.DATABASE.MYSQL.PORT,
                 entities: [env.DATABASE.MYSQL.ENTITIES],
-                syncronize: env.DATABASE.MYSQL.SYNCRHONIZE
-            }
+                synchronize: env.DATABASE.MYSQL.SYNCHRONIZE,
+            };
 
             createConnection(parametersConnection).then(
-                connection => {
-                    console.log("Connected to database")
-                    client = connection;
-                    resolve(true)
+                (connnection) => {
+                    console.log('Conneted to database');
+                    client = connnection;
+                    resolve(true);
                 },
-                error => reject(error)
+                (error) => {
+                    console.log(error);
+                    reject(error);
+                }
             );
         });
 
         await promise;
-
     }
     getConnection() {
         return client;
     }
-
 }

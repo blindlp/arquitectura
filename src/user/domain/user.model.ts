@@ -1,9 +1,8 @@
 export interface UserModel {
-    id: number;
+    id?: number;
     name: string;
     email: string;
     password: string;
-    refreshTocken: string;
-    roles: any;
+    refreshTocken?: string;
     photo: string;
 }
