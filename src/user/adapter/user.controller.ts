@@ -1,7 +1,7 @@
-import {Request, Response} from 'express';
-import {UserUseCase} from '../application/user.usercase';
-import {UserModel} from '../domain/user.model';
-import {UserOperation} from '../infraestruture/user.operation';
+import { Request, Response } from 'express';
+import { UserUseCase } from '../application/user.usercase';
+import { UserModel } from '../domain/user.model';
+import { UserOperation } from '../infraestruture/user.operation';
 
 const operation = new UserOperation();
 
@@ -16,7 +16,7 @@ export class UserController {
     listOne(req: Request, res: Response) {
         const params = req.params;
         const id = +params.id;
-        const user: Partial<UserModel> = {id};
+        const user: Partial<UserModel> = { id };
         const result = useCase.listOne(user);
         return res.json(result);
     }
@@ -33,7 +33,6 @@ export class UserController {
         const user: Partial<UserModel> = {
             name: body.name,
             email: body.email,
-            roles: body.roles,
             photo: body.photo,
             password: body.password,
         };
@@ -54,7 +53,7 @@ export class UserController {
     remove(req: Request, res: Response) {
         const params = req.params;
         const id = +params.id;
-        const user: Partial<UserModel> = {id};
+        const user: Partial<UserModel> = { id };
         const result = useCase.remove(user);
         return res.json(result);
     }

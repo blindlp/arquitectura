@@ -1,48 +1,12 @@
-import { Result } from "../../shared/application/result.interface";
-import { UserModel } from "../domain/user.model";
-import { UserRepository } from "./user.repository";
+import { UseCaseRepository } from '../../shared/application/usecase.repository';
+import { OperationRepository } from '../../shared/infraestructure/operation.repository';
+import { UserModel } from '../domain/user.model';
 
-export class UserUseCase {
-    userRepository: UserRepository;
-  
-    constructor(userRepository: UserRepository) {
-        this.userRepository = userRepository;
+export class UserUseCase extends UseCaseRepository<
+    UserModel,
+    OperationRepository<UserModel>
+> {
+    constructor(public operation: OperationRepository<UserModel>) {
+        super(operation);
     }
-      
-    list(): Result<Partial<UserModel>[]> {
-        const result: Result<UserModel[]> = this.userRepository.list();
-        return result;
-    }
-
-    
-    listOne(user: Partial<UserModel>): Result<UserModel> {
-        const result: Result<UserModel> = this.userRepository.listOne(user);
-        return result;
-    }
-
-    listByPage(page: number): Result<UserModel[]> {
-        const result: Result<UserModel[]> = this.userRepository.listByPage(page);
-        return result;
-    }
-
-    
-    insert(user: Partial<UserModel>): Result<UserModel> {
-        const result: Result<UserModel> = this.userRepository.insert(user);
-        return result;
-    }
-
-    update(user: Partial<UserModel>): Result<UserModel> {
-        const result: Result<UserModel> = this.userRepository.update(user);
-        return result;
-    }
-
-    remove(user: Partial<UserModel>): Result<UserModel> {
-        const result: Result<UserModel> = this.userRepository.remove(user);
-        return result;
-    }
-
-
-
-    
-  
-  }
+}
