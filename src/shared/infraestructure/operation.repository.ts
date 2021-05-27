@@ -76,6 +76,7 @@ export abstract class OperationRepository<T> {
         return ResponseDto.format(trace, recordToUpdate);
     }
 
+<<<<<<< HEAD
     async remove(where: object): Promise<Result<T>> {
         const trace: string = OperationService.getTrace();
         const repository: Repository<T> = getRepository(this.entity);
@@ -83,6 +84,17 @@ export abstract class OperationRepository<T> {
 
         if (recordToDelete) {
             await repository.delete(where);
+=======
+    async remove(entity: T): Promise<Result<T>> {
+        const trace: string = OperationService.getTrace();
+        const repository: Repository<T> = getRepository(this.entity);
+
+        const newEntity: any = Object.assign({}, entity);
+        const recordToDelete: T = await repository.findOne(newEntity.id);
+
+        if (recordToDelete) {
+            await repository.delete(newEntity.id);
+>>>>>>> f59dfcd0da8a263f52aee8c292882316877dee9b
 
             return ResponseDto.format(trace, recordToDelete);
         }
