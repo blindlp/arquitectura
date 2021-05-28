@@ -102,3 +102,17 @@ dist
 
 # TernJS port file
 .tern-port
+
+
+#test
+test
+
+#.nodemon
+.nodemon
+
+.vscode/
+.prettier.json
+
+typeorm_test
+node_modules
+*env.yaml
