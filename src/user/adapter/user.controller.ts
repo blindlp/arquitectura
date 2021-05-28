@@ -17,11 +17,7 @@ export class UserController {
         const params = req.params;
         const id = +params.id;
         const user: Partial<UserModel> = { id };
-<<<<<<< HEAD
         const result = await useCase.listOne(user);
-=======
-        const result = useCase.listOne(user);
->>>>>>> f59dfcd0da8a263f52aee8c292882316877dee9b
         return res.json(result);
     }
 
@@ -57,13 +53,8 @@ export class UserController {
     async remove(req: Request, res: Response) {
         const params = req.params;
         const id = +params.id;
-<<<<<<< HEAD
 
         const result = await useCase.remove({ id });
-=======
-        const user: Partial<UserModel> = { id };
-        const result = useCase.remove(user);
->>>>>>> f59dfcd0da8a263f52aee8c292882316877dee9b
         return res.json(result);
     }
 }
