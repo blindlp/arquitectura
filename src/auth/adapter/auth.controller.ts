@@ -17,4 +17,18 @@ export class AuthController {
         const result = await useCase.login(user);
         return res.json(result);
     }
+
+    async getNewAccessToken(req: Request, res: Response): Promise<any> {
+        const params = req.params;
+        const user: Partial<UserModel> = {
+            refreshToken: params.refreshToken,
+        };
+
+        const result = await useCase.getNewAccessToken(user);
+        if (!result) {
+            res.status(401).send('user not registed');
+        } else {
+            res.json(result);
+        }
+    }
 }

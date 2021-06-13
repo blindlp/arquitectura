@@ -9,4 +9,10 @@ export const schemas = {
                 .required(),
         }),
     },
+
+    REFRESH_TOKEN: {
+        params: Joi.object({
+            refreshToken: Joi.string().required(),
+        }),
+    },
 };

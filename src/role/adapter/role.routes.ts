@@ -1,15 +1,15 @@
 import express from 'express';
-import { UserController } from './user.controller';
+import { RoleController } from './role.controller';
 import { Validators } from '../../shared/adapter/validator';
-import { schemas } from './user.schema';
+import { schemas } from './role.schema';
 import { ErrorHandler } from '../../helper/erros.handler';
 import { AuthenticationGuard } from '../../shared/infraestructure/guards/authentication.guard';
 
-const controller = new UserController();
+const controller = new RoleController();
 
 const route = express.Router();
 
-route.get('/', AuthenticationGuard.canActivate, controller.list);
+route.get('/', /*AuthenticationGuard.canActivate,*/ controller.list);
 route.get('/:id', Validators.validate(schemas.LIST_ONE), controller.listOne);
 route.get(
     '/page/:page',

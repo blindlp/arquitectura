@@ -1,13 +1,13 @@
 import { Request, Response } from 'express';
-import { UserUseCase } from '../application/user.usercase';
-import { UserModel } from '../domain/user.model';
-import { UserOperation } from '../infraestruture/user.operation';
+import { RoleUseCase } from '../application/role.usecase';
+import { RoleModel } from '../domain/role.model';
+import { RoleOperation } from '../infraestruture/role.operation';
 
-const operation = new UserOperation();
+const operation = new RoleOperation();
 
-const useCase = new UserUseCase(operation);
+const useCase = new RoleUseCase(operation);
 
-export class UserController {
+export class RoleController {
     async list(req: Request, res: Response) {
         const result = await useCase.list();
         return res.json(result);
@@ -16,8 +16,8 @@ export class UserController {
     async listOne(req: Request, res: Response) {
         const params = req.params;
         const id = +params.id;
-        const user: Partial<UserModel> = { id };
-        const result = await useCase.listOne(user);
+        const role: Partial<RoleModel> = { id };
+        const result = await useCase.listOne(role);
         return res.json(result);
     }
 
@@ -30,24 +30,20 @@ export class UserController {
 
     async insert(req: Request, res: Response): Promise<any> {
         const body = req.body;
-        const user: UserModel = {
-            name: body.name,
-            email: body.email,
-            photo: body.photo,
-            password: body.password,
-            roles: body.roles,
+        const role: RoleModel = {
+            name: body.roles,
         };
 
-        const result = await useCase.insertCipher(user);
+        const result = await useCase.insert(role);
         return res.json(result);
     }
 
     async update(req: Request, res: Response) {
         const params = req.params;
         const body = req.body;
-        const user: UserModel = body;
+        const role: RoleModel = body;
         const id = +params.id;
-        const result = await useCase.update(user, { id });
+        const result = await useCase.update(role, { id });
         return res.json(result);
     }
 
