@@ -13,6 +13,7 @@ export class AuthenticationGuard {
 
                 UserService.validateAccessToken(accessToken).then(
                     (payload) => {
+                        res.locals.payload = payload;
                         next();
                     },
                     (error) => {

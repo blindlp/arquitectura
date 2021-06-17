@@ -1,15 +1,14 @@
-import { number, string } from 'joi';
 import { RoleModel } from '../domain/role.model';
 
 // Aplicacion
-export interface RoleResponseDto {
+export interface UserResponseDto {
     id: number;
     name: string;
 }
 
-const mappingRoleDto = (role: RoleModel): RoleResponseDto => ({
+const mappingUserDto = (role: RoleModel): UserResponseDto => ({
     id: role.id,
     name: role.name,
 });
 
-export { mappingRoleDto };
+export { mappingUserDto };

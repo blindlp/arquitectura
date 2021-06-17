@@ -1,5 +1,6 @@
 import { nextTick } from 'node:process';
 import { IError } from '../../helper/erros.handler';
+import { RoleUseCase } from '../../role/application/role.usecase';
 import { UserService } from '../../user/application/user.service';
 import { UserModel } from '../../user/domain/user.model';
 import { AuthRepository } from './auth.repository';
@@ -10,7 +11,7 @@ export class AuthUseCase {
     async login(entity: Partial<UserModel>) {
         const user: UserModel = await this.operation.login(
             { email: entity.email },
-            []
+            ['roles']
         );
 
         if (user) {
@@ -21,7 +22,8 @@ export class AuthUseCase {
             if (matched) {
                 const accessToken = UserService.generateAccessToken(
                     user.name,
-                    user.photo
+                    user.photo,
+                    user.roles.map((role) => role.name)
                 );
                 //const refreshToken = UserService.generateRefreshToken();
                 return { accessToken, refreshToken: user.refreshToken };
@@ -44,7 +46,8 @@ export class AuthUseCase {
         } else {
             const accessToken = UserService.generateAccessToken(
                 user.name,
-                user.photo
+                user.photo,
+                user.roles.map((role) => role.name)
             );
             // const refreshToken = UserService.generateRefreshToken();
             return { accessToken, refreshToken: user.refreshToken };

@@ -19,12 +19,13 @@ export class UserService {
         return await bcryptjs.compare(password, passwordCipher);
     }
 
-    static generateAccessToken(name: string, photo: string) {
+    static generateAccessToken(name: string, photo: string, roles: string[]) {
         const iat = moment().unix();
         const exp = moment().add(env.TOKEN.TIMEOUT, 'seconds').unix();
         const payload = {
             name,
             photo,
+            roles,
             iat,
             exp,
         };

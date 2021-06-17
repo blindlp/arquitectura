@@ -1,4 +1,5 @@
 import { Entity } from 'typeorm';
+import { RoleRepository } from '../../role/application/role.repository';
 import { UseCaseRepository } from '../../shared/application/usecase.repository';
 import { OperationRepository } from '../../shared/infraestructure/operation.repository';
 import { UserModel } from '../domain/user.model';
@@ -7,7 +8,10 @@ import { UserService } from './user.service';
 
 export class UserUseCase extends UseCaseRepository<UserModel, UserRepository> {
     //OperationRepository<UserModel>
-    constructor(public operation: UserRepository) {
+    constructor(
+        public operation: UserRepository,
+        public operationRole: RoleRepository
+    ) {
         super(operation);
     }
 
@@ -15,6 +19,13 @@ export class UserUseCase extends UseCaseRepository<UserModel, UserRepository> {
         entity.password = await UserService.cryptPassword(entity.password);
         entity.refreshToken = UserService.generateRefreshToken();
 
+        const listRoles: any[] = [];
+        entity.roles.forEach((role) => {
+            listRoles.push(this.operationRole.getOne({ id: role }, []));
+        });
+
+        const roles = await Promise.all(listRoles);
+        entity.roles = roles;
         return this.operation.insertCipher(entity);
     }
 }

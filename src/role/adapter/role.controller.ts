@@ -7,7 +7,7 @@ const operation = new RoleOperation();
 
 const useCase = new RoleUseCase(operation);
 
-export class RoleController {
+export class RoleContoller {
     async list(req: Request, res: Response) {
         const result = await useCase.list();
         return res.json(result);
@@ -21,6 +21,14 @@ export class RoleController {
         return res.json(result);
     }
 
+    async getOne(req: Request, res: Response) {
+        const params = req.params;
+        const id = +params.id;
+        const role: Partial<RoleModel> = { id };
+        const result = await useCase.getOne(role);
+        return res.json(result);
+    }
+
     async listByPage(req: Request, res: Response) {
         const params = req.params;
         const page = +params.page;
@@ -31,11 +39,11 @@ export class RoleController {
     async insert(req: Request, res: Response): Promise<any> {
         const body = req.body;
         const role: RoleModel = {
-            name: body.roles,
+            name: body.name,
         };
 
         const result = await useCase.insert(role);
-        return res.json(result);
+        return res.json(role);
     }
 
     async update(req: Request, res: Response) {

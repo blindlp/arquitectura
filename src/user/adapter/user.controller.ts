@@ -1,11 +1,13 @@
 import { Request, Response } from 'express';
+import { RoleOperation } from '../../role/infraestruture/role.operation';
 import { UserUseCase } from '../application/user.usercase';
 import { UserModel } from '../domain/user.model';
 import { UserOperation } from '../infraestruture/user.operation';
 
 const operation = new UserOperation();
+const operationRole = new RoleOperation();
 
-const useCase = new UserUseCase(operation);
+const useCase = new UserUseCase(operation, operationRole);
 
 export class UserController {
     async list(req: Request, res: Response) {
