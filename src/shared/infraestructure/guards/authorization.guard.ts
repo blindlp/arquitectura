@@ -1,5 +1,4 @@
-import e, { NextFunction, Request, Response } from 'express';
-import { isError } from 'lodash';
+import { NextFunction, Request, Response } from 'express';
 import { IError } from '../../../helper/erros.handler';
 
 export class AuthorizacionGuard {
@@ -11,7 +10,9 @@ export class AuthorizacionGuard {
 
             for (const role of roles) {
                 if (rolesAllowed.indexOf(role) > -1) {
-                    (roleMatched = true), next();
+                    console.log(role.indexOf(rolesAllowed));
+                    roleMatched = true;
+                    next();
                     break;
                 }
             }

@@ -19,7 +19,7 @@ export const schemas = {
                 .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$'))
                 .required(),
             roles: Joi.array().required(),
-            photo: Joi.string(),
+            photo: Joi.string().required(),
         }),
     },
     UPDATE: {
