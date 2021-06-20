@@ -1,6 +1,3 @@
-import { nextTick } from 'node:process';
-import { IError } from '../../helper/erros.handler';
-import { RoleUseCase } from '../../role/application/role.usecase';
 import { UserService } from '../../user/application/user.service';
 import { UserModel } from '../../user/domain/user.model';
 import { AuthRepository } from './auth.repository';
@@ -36,10 +33,8 @@ export class AuthUseCase {
     async getNewAccessToken(entity: Partial<UserModel>) {
         const user: UserModel = await this.operation.getUserByRefreshToken(
             { refreshToken: entity.refreshToken },
-            []
+            ['roles']
         );
-
-        console.log('user', user);
 
         if (!user) {
             return null;
@@ -49,7 +44,7 @@ export class AuthUseCase {
                 user.photo,
                 user.roles.map((role) => role.name)
             );
-            // const refreshToken = UserService.generateRefreshToken();
+
             return { accessToken, refreshToken: user.refreshToken };
         }
     }

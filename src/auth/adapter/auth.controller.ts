@@ -20,6 +20,7 @@ export class AuthController {
 
     async getNewAccessToken(req: Request, res: Response): Promise<any> {
         const params = req.params;
+
         const user: Partial<UserModel> = {
             refreshToken: params.refreshToken,
         };
