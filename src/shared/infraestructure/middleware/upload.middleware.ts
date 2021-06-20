@@ -36,7 +36,7 @@ export class Upload {
                         const extension = partsFile[1];
                         const newFileName = `${name}.${extension}`;
                         req.body[fieldName] = newFileName;
-                        cb(null, file.originalname);
+                        cb(null, newFileName);
                     }
                 },
             }),
