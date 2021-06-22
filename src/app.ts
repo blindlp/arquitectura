@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 
 import { ErrorHandler } from './helper/erros.handler';
 import { route as routeUser } from './user/adapter/user.routes';
@@ -17,6 +17,8 @@ multer();
 app.use('/users', routeUser);
 app.use('/auth', routeAuth);
 app.use('/roles', routeRole);
+
+app.get('/health', (req: Request, res: Response) => res.send('Server Run'));
 
 app.use(ErrorHandler.pathNotFound);
 
