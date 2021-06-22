@@ -1,4 +1,4 @@
-# Implement an API with node with docker in two envitoments localy in docker and over aws.
+# Implement an API with node and docker in two envitoments localy in docker and over aws.
 
 ## docker in a local place
 
