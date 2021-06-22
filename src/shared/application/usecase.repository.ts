@@ -19,6 +19,13 @@ export class UseCaseRepository<T, U extends RepositoryBase<T>> {
         return await this.operation.listOne(where, relations);
     }
 
+    async getOne(
+        where: object = {},
+        relations: string[] = []
+    ): Promise<Result<T>> {
+        return await this.operation.listOne(where, relations);
+    }
+
     async listByPage(
         page: number,
         pageSize: number,

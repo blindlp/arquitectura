@@ -1,5 +1,5 @@
-import {NextFunction, Request, Response} from 'express';
-import {IError} from '../../helper/erros.handler';
+import { NextFunction, Request, Response } from 'express';
+import { IError } from '../../helper/erros.handler';
 
 export class Validators {
     static validate(objSchema: any) {

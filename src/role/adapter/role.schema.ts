@@ -14,12 +14,6 @@ export const schemas = {
     INSERT: {
         body: Joi.object({
             name: Joi.string().required(),
-            email: Joi.string().required(),
-            password: Joi.string()
-                .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$'))
-                .required(),
-            roles: Joi.array().required(),
-            photo: Joi.string().required(),
         }),
     },
     UPDATE: {
@@ -28,10 +22,6 @@ export const schemas = {
         }),
         body: Joi.object({
             name: Joi.string(),
-            email: Joi.string(),
-            password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')),
-            //        roles: Joi.string(),
-            photo: Joi.string(),
         }),
     },
     DELETE: {
