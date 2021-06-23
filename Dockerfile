@@ -10,7 +10,9 @@ WORKDIR /app
 
 ADD . .
 
-RUN echo "Directorio" && pwd
+RUN echo "Directorio" 
+RUN pwd
+run ls
 
 RUN npm run build
 
