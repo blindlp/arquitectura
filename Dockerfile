@@ -14,11 +14,6 @@ RUN npm run build
 
 WORKDIR /app
 
--- COPY --from=stageBuild /app/node_modules ./node_modules
--- COPY --from=stageBuild /app/dist /dist
--- COPY package.json .
--- COPY env.yaml .
-
 CMD ["npm","run","serve"]
 
 
