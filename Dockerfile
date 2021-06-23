@@ -12,7 +12,7 @@ ADD . .
 
 RUN echo "Directorio" 
 RUN pwd
-run ls
+run -ls
 
 RUN npm run build
 
