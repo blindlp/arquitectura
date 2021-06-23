@@ -14,6 +14,8 @@ RUN npm run build
 
 WORKDIR /app
 
+RUN ls
+
 CMD ["npm","run","serve"]
 
 
