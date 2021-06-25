@@ -18,7 +18,9 @@ app.use('/users', routeUser);
 app.use('/auth', routeAuth);
 app.use('/roles', routeRole);
 
-app.get('/health', (req: Request, res: Response) => res.send('Server Run'));
+app.get('/health', (req: Request, res: Response) =>
+    res.send('Server Run Mother Fucker')
+);
 
 app.use(ErrorHandler.pathNotFound);
 

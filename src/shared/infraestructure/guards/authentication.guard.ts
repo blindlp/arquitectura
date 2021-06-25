@@ -15,6 +15,7 @@ export class AuthenticationGuard {
                     (payload) => {
                         console.log('token válido');
                         res.locals.payload = payload;
+                        console.log('payload', payload);
                         next();
                     },
                     (error) => {
