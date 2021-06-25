@@ -1,4 +1,4 @@
-FROM node:14.7.0-alpine3.10 as stageBuild
+FROM node:14.7.0-alpine3.10 
 
 ADD package*.json /tmp/ 
 
@@ -10,9 +10,11 @@ WORKDIR /app
 
 ADD . .
 
-RUN npm run build
+RUN echo "Directorio" 
+RUN pwd
+run -ls
 
-FROM node:14.7.0-alpine3.10
+RUN npm run build
 
 WORKDIR /app 
 
@@ -20,5 +22,6 @@ COPY --from=stageBuild /app/node_modules ./node_modules
 COPY --from=stageBuild /app/dist ./dist
 COPY package.json . 
 COPY env.yaml .
+
 
 CMD ["npm", "run", "serve"]
