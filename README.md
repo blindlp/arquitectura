@@ -2,7 +2,7 @@
 
 # Implement an API with node and docker in two envitoments localy in docker and over aws.
 
-## docker in a local place
+## docker in a local places
 
 ### docker testing 
 ## build the image in docker run this.
