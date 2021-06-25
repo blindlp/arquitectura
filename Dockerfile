@@ -8,8 +8,6 @@ RUN mkdir /app && cp -a tmp/node_modules /app
 
 WORKDIR /app
 
-RUN pwd
-
 ADD . .
 
 RUN npm run build
@@ -17,8 +15,6 @@ RUN npm run build
 FROM node:14.7.0-alpine3.10
 
 WORKDIR /app
-
-RUN pwd
 
 COPY --from=stageBuild /app/node_modules ./node_modules
 COPY --from=stageBuild /app/dist ./dist
